@@ -28,7 +28,7 @@ function getFinals(data) {
    let finalTeams = data.filter(item => item.Stage === "Final")
    return finalTeams
 }
-console.log(getFinals)
+
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
 1. Receive an array
@@ -42,7 +42,6 @@ function getYears(array, cb) {
     return years
 }
 
-
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function getWinners to do the following:  
 1. Receives an array
@@ -50,11 +49,18 @@ Use the higher-order function getWinners to do the following:
 3. Determines the winner (home or away) of each `finals` game. 
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
-    /* code here */
+function getWinners(arr, cb) {
+    let winners = []
+    cb(arr)
+    for (let i in cb(arr)) {
+        if (cb(arr)[i]["Home Team Goals"] > cb(arr)[i]["Away Team Goals"]) {
+            winners.push(cb(arr)[i]["Home Team Name"])
+        } else {
+            winners.push(cb(arr)[i]["Away Team Name"])
+    }
 }
-
-
+return winners
+}
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use the higher-order function getWinnersByYear to do the following:
@@ -66,10 +72,16 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
+function getWinnersByYear(arr, cbYears, cbWinners) {
+    let strArr = []
+    let years = cbYears(arr, getFinals)
+    let country = cbWinners(arr, getWinners)
+    for (let i in years) {
+        strArr.push(`In ${years[i]}, ${country[i]} won the world cup!`);
+        
+    }
+return strArr
 }
-
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
