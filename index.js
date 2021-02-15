@@ -25,22 +25,22 @@ hint - you should be looking at the stage key inside of the objects
 */
 
 function getFinals(data) {
-   return data.filter(fifaData => fifaData.Stage === 'Final')
+   let finalTeams = data.filter(item => item.Stage === "Final")
+   return finalTeams
 }
-
 console.log(getFinals)
-
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
 1. Receive an array
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(array, getFinals) {
-    let years = getFinals.map(getFinals.Year);
-        return years;
+function getYears(array, cb) {
+    let years = cb(array).map((item) => {
+        return item.Year
+    })
+    return years
 }
-
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
